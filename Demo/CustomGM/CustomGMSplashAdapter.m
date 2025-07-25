@@ -6,10 +6,9 @@
 #import "CustomGMSDKLoader.h"
 #import "CustomGMECPM.h"
 
-@interface CustomGMSplashAdapter ()<BUMSplashAdDelegate, BUSplashZoomOutDelegate,CustomGMLoaderDelegate>
+@interface CustomGMSplashAdapter ()<BUMSplashAdDelegate,CustomGMLoaderDelegate>
 
 @property (nonatomic, strong) BUSplashAd *splashAd;
-@property (nonatomic, strong) BUSplashZoomOutView *zoomOutView;
 @property (nonatomic, strong) UIView *bottomView;
 @property (nonatomic, copy)   NSString *placementId;
 @property (nonatomic, assign) BOOL isC2SBidding;
@@ -82,8 +81,6 @@
     slot.mediation.mutedIfCan = YES;
     self.splashAd = [[BUSplashAd alloc] initWithSlot:slot adSize:size];
     self.splashAd.delegate = self;
-    self.splashAd.zoomOutDelegate = self;
-    self.splashAd.supportZoomOutView = self.supportZoomOut;
     if(self.tolerateTimeout > 0)
     {
         self.splashAd.tolerateTimeout = self.tolerateTimeout;
@@ -133,10 +130,6 @@
 - (void)showAdInWindow:(UIWindow *)window bottomView:(UIView *)bottomView
 {
     UIViewController *rootViewController = self.waterfallItem.splashWindow.rootViewController;
-    if(self.splashAd.zoomOutView)
-    {
-        self.splashAd.zoomOutView.rootViewController = rootViewController;
-    }
     if(self.bottomView != nil && bottomView != nil)
     {
         [self.bottomView addSubview:bottomView];
@@ -247,14 +240,8 @@
     {
         [self ADShowExtraCallbackWithEvent:@"tradplus_splash_skip" info:nil];
     }
-    if(!self.splashAd.zoomOutView)
-    {
-        [self AdClose];
-        [self.splashAd.mediation destoryAd];
-    }
-    else {
-        [self ADShowExtraCallbackWithEvent:@"tradplus_splash_zoom_show" info:nil];
-    }
+    [self AdClose];
+    [self.splashAd.mediation destoryAd];
 }
 
 - (void)splashAdDidShow:(BUSplashAd *)splashAd 
@@ -276,29 +263,6 @@
 
 - (void)splashVideoAdDidPlayFinish:(BUSplashAd *)splashAd didFailWithError:(NSError *)error
 {
-}
-
-
-#pragma mark - BUSplashZoomOutViewDelegate
-- (void)splashZoomOutReadyToShow:(BUSplashAd *)splashAd
-{
-    if (self.splashAd.zoomOutView)
-    {
-        [self.splashAd showZoomOutViewInRootViewController:self.waterfallItem.splashWindow.rootViewController];
-    }
-}
-
-- (void)splashZoomOutViewDidClick:(BUSplashAd *)splashAd
-{
-    [self AdClick];
-    [self ADShowExtraCallbackWithEvent:@"tradplus_splash_zoom_close" info:nil];
-    [self AdClose];
-}
-
-- (void)splashZoomOutViewDidClose:(BUSplashAd *)splashAd
-{
-    [self ADShowExtraCallbackWithEvent:@"tradplus_splash_zoom_close" info:nil];
-    [self AdClose];
 }
 
 @end

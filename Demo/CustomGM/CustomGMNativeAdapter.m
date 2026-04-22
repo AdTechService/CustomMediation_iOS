@@ -195,7 +195,7 @@
             res.ctaText = data.buttonText;
             res.rating = @(data.score);
             res.commentNum = data.commentNum;
-            res.source = data.source;
+            res.source = data.AdSource;
             res.videoUrl = data.videoUrl;
             res.videoDuration = data.videoDuration;
             res.extraInfo[@"aspectRatio"] = @(data.videoResolutionWidth/data.videoResolutionHeight);
@@ -216,8 +216,8 @@
                 }
                 res.adChoiceView.contentMode = UIViewContentModeScaleAspectFit;
             }
-            if (data.imageMode == BUMMediatedNativeAdModeLandscapeVideo ||
-                data.imageMode == BUMMediatedNativeAdModePortraitVideo)
+            if (data.imageMode == BUFeedVideoAdModeImage ||
+                data.imageMode == BUFeedVideoAdModePortrait)
             {
                 res.mediaView = self.nativeAd.mediation.canvasView.mediaView;
             }
@@ -302,6 +302,8 @@
 
 - (void)nativeAdDidBecomeVisible:(BUNativeExpressAdView *_Nonnull)nativeAdView
 {
+    NSLog(@"biddingType - %@",@(nativeAdView.mediation.getShowEcpmInfo.biddingType));
+    NSLog(@"ecpm - %@",nativeAdView.mediation.getShowEcpmInfo.ecpm);
     [self AdShow];
 }
 

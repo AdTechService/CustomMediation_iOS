@@ -96,7 +96,7 @@
             break;
         }
     }
-    return CGSizeMake(width, height);;
+    return CGSizeMake(width, height);
 }
 
 - (void)loadAd
@@ -157,6 +157,13 @@
 {
     [self setBannerCenterWithBanner:self.bannerAd subView:subView];
     [self AdShow];
+    [self performSelector:@selector(showInfo) withObject:nil afterDelay:0.5];
+}
+
+- (void)showInfo
+{
+    NSLog(@"biddingType - %@",@(self.bannerAd.mediation.getShowEcpmInfo.biddingType));
+    NSLog(@"ecpm - %@",self.bannerAd.mediation.getShowEcpmInfo.ecpm);
 }
 
 #pragma mark - C2SBidding

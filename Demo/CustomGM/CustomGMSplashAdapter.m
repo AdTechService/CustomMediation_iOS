@@ -221,6 +221,8 @@
 
 - (void)splashAdWillShow:(BUSplashAd *)splashAd
 {
+    NSLog(@"biddingType - %@",@(splashAd.mediation.getShowEcpmInfo.biddingType));
+    NSLog(@"ecpm - %@",splashAd.mediation.getShowEcpmInfo.ecpm);
     [self AdShow];
 }
 

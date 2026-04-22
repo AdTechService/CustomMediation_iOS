@@ -222,6 +222,8 @@
 
 - (void)nativeExpressFullscreenVideoAdDidVisible:(BUNativeExpressFullscreenVideoAd *)fullscreenVideoAd
 {
+    NSLog(@"biddingType - %@",@(fullscreenVideoAd.mediation.getShowEcpmInfo.biddingType));
+    NSLog(@"ecpm - %@",fullscreenVideoAd.mediation.getShowEcpmInfo.ecpm);
     [self AdShow];
     [self ADShowExtraCallbackWithEvent:@"tradplus_play_begin" info:nil];
 }

@@ -224,6 +224,8 @@
 
 - (void)nativeExpressRewardedVideoAdDidVisible:(BUNativeExpressRewardedVideoAd *)rewardedVideoAd
 {
+    NSLog(@"biddingType - %@",@(rewardedVideoAd.mediation.getShowEcpmInfo.biddingType));
+    NSLog(@"ecpm - %@",rewardedVideoAd.mediation.getShowEcpmInfo.ecpm);
     [self AdShow];
     [self ADShowExtraCallbackWithEvent:@"tradplus_play_begin" info:nil];
 }
@@ -233,8 +235,6 @@
     if (self.shouldReward || !self.isSkip)
         [self AdRewardedWithInfo:self.rewardDic];
     [self AdClose];
-    self.expressRewardedVideoAd.delegate = nil;
-    self.expressRewardedVideoAd = nil;
 }
 
 // 广告被点击

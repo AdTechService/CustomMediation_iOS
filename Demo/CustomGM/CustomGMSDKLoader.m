@@ -143,9 +143,10 @@
 }
 - (void)setPersonalizedAd
 {
-    if(self.openPersonalizedAd != gTPOpenPersonalizedAd)
+    BOOL openPersonalizedAd = getTPOpenPersonalizedAd();
+    if(self.openPersonalizedAd != openPersonalizedAd)
     {
-        self.openPersonalizedAd = gTPOpenPersonalizedAd;
+        self.openPersonalizedAd = openPersonalizedAd;
         NSString *isOpen = @"1";
         if(self.openPersonalizedAd)
         {

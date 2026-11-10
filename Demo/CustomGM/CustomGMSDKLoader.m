@@ -60,23 +60,25 @@
 - (void)initWithAppID:(NSString *)appID
              delegate:(id <CustomGMLoaderDelegate>)delegate
 {
+    [tableLock lock];
     if(delegate != nil)
     {
-        [tableLock lock];
         [self.delegateArray addObject:delegate];
-        [tableLock unlock];
     }
     
     if(self.didInit)
     {
+        [tableLock unlock];
         [self initFinish];
         return;
     }
     if(self.isIniting)
     {
+        [tableLock unlock];
         return;
     }
     self.isIniting = YES;
+    [tableLock unlock];
     BUAdSDKConfiguration *configuration = [BUAdSDKConfiguration configuration];
     configuration.appID = appID;
     configuration.useMediation = YES;
@@ -85,18 +87,23 @@
     
     __weak typeof(self) weakSelf = self;
     [BUAdSDKManager startWithAsyncCompletionHandler:^(BOOL success, NSError *error) {
-        weakSelf.isIniting = NO;
-        if (success)
+        [tableLock lock];
+        if(success)
         {
             weakSelf.didInit = YES;
+        }
+        weakSelf.isIniting = NO;
+        [tableLock unlock];
+        if (success)
+        {
             customGM_dispatch_main_async_safe(^{
-                [weakSelf initFinish];
+            [weakSelf initFinish];
             });
         }
         else
         {
             customGM_dispatch_main_async_safe(^{
-                [weakSelf initFailWithError:error];
+            [weakSelf initFailWithError:error];
             });
         }
     }];

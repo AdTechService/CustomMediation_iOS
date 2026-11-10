@@ -1,0 +1,69 @@
+PODS:
+  - Ads-CN/BUAdLive (7.8.0.7)
+  - Ads-CN/BUAdLive-Framework (7.8.0.7):
+    - Ads-CN/BUAdLive
+    - BUTTSDKFramework/LivePull-Lite (= 1.48.2.3-premium)
+  - Ads-CN/BUAdSDK (7.8.0.7)
+  - Ads-CN/CSJMediation (7.8.0.7):
+    - Ads-CN/BUAdLive-Framework
+    - Ads-CN/CSJMediation-Only
+  - Ads-CN/CSJMediation-Only (7.8.0.7):
+    - Ads-CN/BUAdSDK
+  - BUTTSDKFramework/Core (1.48.2.3-premium)
+  - BUTTSDKFramework/LiveBase (1.48.2.3-premium):
+    - BUTTSDKFramework/Core
+    - BUTTSDKFramework/Reachability
+  - BUTTSDKFramework/LivePlayer/Base (1.48.2.3-premium):
+    - BUTTSDKFramework/Core
+    - BUTTSDKFramework/LiveBase
+    - BUTTSDKFramework/LivePull-VolcLog
+    - BUTTSDKFramework/Reachability
+  - BUTTSDKFramework/LivePlayer/Lite (1.48.2.3-premium):
+    - BUTTSDKFramework/LivePlayer/Base
+    - BUTTSDKFramework/PlayerCore/LiveLite
+  - BUTTSDKFramework/LivePull-Lite (1.48.2.3-premium):
+    - BUTTSDKFramework/LivePlayer/Lite
+    - BUTTSDKFramework/Strategy/Lite
+  - BUTTSDKFramework/LivePull-VolcLog (1.48.2.3-premium):
+    - BUTTSDKFramework/VolcLog
+  - BUTTSDKFramework/PlayerCore/Base (1.48.2.3-premium):
+    - BUTTSDKFramework/Core
+  - BUTTSDKFramework/PlayerCore/LiveLite (1.48.2.3-premium):
+    - BUTTSDKFramework/PlayerCore/Base
+    - BUTTSDKFramework/TTFFmpeg/LiveLite
+  - BUTTSDKFramework/Reachability (1.48.2.3-premium)
+  - BUTTSDKFramework/Strategy/Core (1.48.2.3-premium):
+    - BUTTSDKFramework/LiveBase
+    - BUTTSDKFramework/Reachability
+  - BUTTSDKFramework/Strategy/Lite (1.48.2.3-premium):
+    - BUTTSDKFramework/LivePlayer/Lite
+    - BUTTSDKFramework/Strategy/Core
+  - BUTTSDKFramework/TTFFmpeg/LiveLite (1.48.2.3-premium)
+  - BUTTSDKFramework/VolcLog (1.48.2.3-premium)
+  - TPExchange (13.8.80)
+  - TradPlusAdSDK (15.18.0):
+    - TradPlusAdSDK/TradPlusAds (= 15.18.0)
+  - TradPlusAdSDK/TradPlusAds (15.18.0):
+    - TPExchange (= 13.8.80)
+
+DEPENDENCIES:
+  - Ads-CN/BUAdSDK (= 7.8.0.7)
+  - Ads-CN/CSJMediation (= 7.8.0.7)
+  - TradPlusAdSDK (= 15.18.0)
+
+SPEC REPOS:
+  trunk:
+    - Ads-CN
+    - BUTTSDKFramework
+    - TPExchange
+    - TradPlusAdSDK
+
+SPEC CHECKSUMS:
+  Ads-CN: d31bbd0346a843999cdcb87f99be838a705b20b8
+  BUTTSDKFramework: 34f8f8d541da07e79e9c479eb71336d1e4d90fdd
+  TPExchange: baa4c3e213414ca01c23e0aed1ff0f314717a310
+  TradPlusAdSDK: 999fb02d8ba39798b9a635985be74e7f33d07a10
+
+PODFILE CHECKSUM: d2163f5d0cfaf929f50870dba00a32972b5648d8
+
+COCOAPODS: 1.17.0
